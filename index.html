@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naveen Antony Raj S — Odoo Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#05070a;
+    --panel:#0e131b;
+    --panel-raised:#141b26;
+    --steel:#2a3342;
+    --steel-light:#3d4a5e;
+    --signal:#f2c744;
+    --signal-dim:#a88a2e;
+    --text:#e6e9ef;
+    --muted:#8b93a3;
+    --muted-dim:#5b6474;
+    --max:1100px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--void);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--signal);color:#0a0a0a;}
+
+  a{color:var(--signal);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--signal);outline-offset:3px;}
+
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 32px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(5,7,10,0.85);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--steel);
+  }
+  nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:64px;
+  }
+  .brand{
+    font-family:'Anton',sans-serif;
+    font-size:20px;
+    letter-spacing:0.03em;
+    color:var(--text);
+  }
+  .brand span{color:var(--signal);}
+  .navlinks{display:flex;gap:28px;}
+  .navlinks a{
+    color:var(--muted);
+    font-size:14px;
+    font-weight:500;
+  }
+  .navlinks a:hover{color:var(--signal);text-decoration:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    padding-top:64px;
+    background:
+      radial-gradient(ellipse 900px 700px at 78% -10%, rgba(242,199,68,0.16), transparent 60%),
+      linear-gradient(180deg, #05070a 0%, #070a0f 55%, #05070a 100%);
+  }
+  .skyline{
+    position:absolute;
+    bottom:0;left:0;right:0;
+    height:38%;
+    background:
+      linear-gradient(180deg, transparent, var(--void) 92%);
+    z-index:1;
+  }
+  .skyline svg{position:absolute;bottom:0;width:100%;height:100%;}
+
+  .beam{
+    position:absolute;
+    top:-20%;
+    right:6%;
+    width:900px;height:900px;
+    background:conic-gradient(from 200deg at 50% 50%, transparent 0deg, rgba(242,199,68,0.10) 18deg, transparent 40deg);
+    filter:blur(2px);
+    animation:sweep 2.6s ease-out 1;
+    transform-origin:50% 8%;
+  }
+  @keyframes sweep{
+    0%{opacity:0; transform:rotate(-14deg);}
+    45%{opacity:1;}
+    100%{opacity:1; transform:rotate(0deg);}
+  }
+
+  .bat-emblem{
+    position:absolute;
+    top:8%;
+    right:9%;
+    width:220px;
+    opacity:0.9;
+    filter:drop-shadow(0 0 40px rgba(242,199,68,0.35));
+    animation:fadein 1.4s ease-out 0.4s both;
+  }
+  @keyframes fadein{ from{opacity:0; transform:scale(0.85);} to{opacity:0.9; transform:scale(1);} }
+
+  .hero-inner{position:relative;z-index:2;padding:80px 0 120px;}
+  .eyebrow-line{
+    display:flex;align-items:center;gap:12px;
+    color:var(--signal-dim);
+    font-size:14px;
+    margin-bottom:22px;
+  }
+  .eyebrow-line .dash{width:34px;height:2px;background:var(--signal-dim);}
+
+  h1.title{
+    font-family:'Anton',sans-serif;
+    font-weight:400;
+    font-size:clamp(48px, 8vw, 96px);
+    line-height:0.98;
+    letter-spacing:0.01em;
+    margin:0 0 18px;
+    color:var(--text);
+  }
+  h1.title .last{
+    color:var(--signal);
+    -webkit-text-fill-color:var(--signal);
+  }
+
+  .role-line{
+    font-size:clamp(17px, 2vw, 22px);
+    color:var(--muted);
+    max-width:640px;
+    margin:0 0 34px;
+    font-weight:500;
+  }
+  .role-line strong{color:var(--text);}
+
+  .hero-meta{
+    display:flex;flex-wrap:wrap;gap:28px;
+    margin-bottom:40px;
+  }
+  .hero-meta div{font-size:14px;color:var(--muted-dim);}
+  .hero-meta strong{
+    display:block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:22px;
+    color:var(--text);
+    font-weight:500;
+  }
+
+  .cta-row{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 26px;
+    font-size:14px;font-weight:600;
+    border:1px solid var(--steel-light);
+    clip-path:polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  }
+  .btn-primary{
+    background:var(--signal);
+    color:#0a0a0a;
+    border-color:var(--signal);
+  }
+  .btn-primary:hover{background:#ffd75c;text-decoration:none;}
+  .btn-ghost{
+    color:var(--text);
+    background:transparent;
+  }
+  .btn-ghost:hover{border-color:var(--signal);color:var(--signal);text-decoration:none;}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:100px 0;position:relative;}
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:18px;
+    margin-bottom:56px;
+    border-bottom:1px solid var(--steel);
+    padding-bottom:20px;
+  }
+  .section-num{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--signal-dim);
+    font-size:14px;
+  }
+  .section-head h2{
+    font-family:'Anton',sans-serif;
+    font-weight:400;
+    font-size:clamp(28px,4vw,40px);
+    margin:0;
+    letter-spacing:0.01em;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:60px;
+  }
+  .about-grid p{color:var(--muted);font-size:16px;max-width:56ch;}
+  .about-grid p + p{margin-top:16px;}
+  .file-card{
+    background:var(--panel);
+    border:1px solid var(--steel);
+    clip-path:polygon(0 0, 100% 0, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+    padding:26px 28px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+  }
+  .file-card .tag{color:var(--signal-dim);}
+  .file-card dl{margin:14px 0 0;}
+  .file-card dt{color:var(--muted-dim);margin-top:12px;}
+  .file-card dd{margin:2px 0 0;color:var(--text);}
+
+  /* ---------- SKILLS ---------- */
+  .belt{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(160px,1fr));
+    gap:1px;
+    background:var(--steel);
+    border:1px solid var(--steel);
+  }
+  .belt-item{
+    background:var(--panel);
+    padding:20px 18px;
+    transition:background 0.2s ease, color 0.2s ease;
+  }
+  .belt-item:hover{background:var(--panel-raised);}
+  .belt-item .cat{
+    display:block;
+    font-size:11px;
+    color:var(--signal-dim);
+    font-family:'JetBrains Mono',monospace;
+    margin-bottom:8px;
+  }
+  .belt-item .name{font-size:15px;font-weight:600;color:var(--text);}
+
+  /* ---------- EXPERIENCE (timeline) ---------- */
+  .timeline{position:relative;padding-left:32px;border-left:2px solid var(--steel);}
+  .tl-item{position:relative;padding-bottom:52px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:'';
+    position:absolute;
+    left:-38px;top:4px;
+    width:14px;height:14px;
+    background:var(--void);
+    border:2px solid var(--signal);
+    transform:rotate(45deg);
+  }
+  .tl-role{font-size:20px;font-weight:700;color:var(--text);margin:0;}
+  .tl-org{color:var(--signal-dim);font-size:14px;font-weight:600;margin:4px 0 2px;}
+  .tl-date{
+    color:var(--muted-dim);
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    margin-bottom:12px;
+  }
+  .tl-item p{color:var(--muted);max-width:64ch;margin:0;font-size:15px;}
+
+  /* ---------- PROJECTS ---------- */
+  .cases{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--steel);border:1px solid var(--steel);}
+  .case{
+    background:var(--panel);
+    padding:28px 30px;
+    position:relative;
+  }
+  .case .num{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--muted-dim);
+    font-size:12px;
+  }
+  .case h3{margin:8px 0 6px;font-size:18px;color:var(--text);}
+  .case .stack{
+    display:inline-block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--signal-dim);
+    margin-bottom:10px;
+  }
+  .case p{margin:0;color:var(--muted);font-size:14px;}
+  .case.featured{grid-column:span 2;background:var(--panel-raised);}
+  .case.featured h3{font-size:22px;}
+
+  /* ---------- CONTACT ---------- */
+  .contact-panel{
+    background:var(--panel);
+    border:1px solid var(--steel);
+    padding:56px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    clip-path:polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px);
+  }
+  .contact-panel .signal-bg{
+    position:absolute;inset:0;
+    background:radial-gradient(circle at 50% 0%, rgba(242,199,68,0.14), transparent 55%);
+    pointer-events:none;
+  }
+  .contact-panel h2{
+    font-family:'Anton',sans-serif;
+    font-weight:400;
+    font-size:clamp(30px,5vw,48px);
+    margin:0 0 14px;
+    position:relative;
+  }
+  .contact-panel p{color:var(--muted);margin:0 0 30px;position:relative;}
+  .contact-links{
+    display:flex;justify-content:center;gap:28px;flex-wrap:wrap;
+    position:relative;
+    font-family:'JetBrains Mono',monospace;
+    font-size:14px;
+  }
+  .contact-links a{color:var(--text);}
+  .contact-links a:hover{color:var(--signal);}
+
+  footer{
+    padding:30px 0 50px;
+    text-align:center;
+    color:var(--muted-dim);
+    font-size:13px;
+  }
+
+  @media (max-width: 760px){
+    .about-grid{grid-template-columns:1fr;}
+    .cases{grid-template-columns:1fr;}
+    .case.featured{grid-column:span 1;}
+    .navlinks{display:none;}
+    .contact-panel{padding:36px 24px;}
+    .bat-emblem{width:130px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">N<span>A</span>R</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Cases</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="beam" aria-hidden="true"></div>
+  <svg class="bat-emblem" viewBox="0 0 100 60" aria-hidden="true">
+    <path fill="none" stroke="#f2c744" stroke-width="1.4" opacity="0.55"
+      d="M50,6 C43,14 34,12 28,16 C33,20 34,25 30,32 C36,29 39,33 40,40 C44,34 47,36 50,44 C53,36 56,34 60,40 C61,33 64,29 70,32 C66,25 67,20 72,16 C66,12 57,14 50,6 Z"/>
+  </svg>
+  <div class="skyline" aria-hidden="true">
+    <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
+      <rect x="0" y="90" width="60" height="110" fill="#0a0e14"/>
+      <rect x="70" y="60" width="45" height="140" fill="#0b0f16"/>
+      <rect x="125" y="110" width="70" height="90" fill="#0a0e14"/>
+      <rect x="205" y="40" width="38" height="160" fill="#0c1018"/>
+      <rect x="255" y="95" width="55" height="105" fill="#0a0e14"/>
+      <rect x="320" y="70" width="30" height="130" fill="#0b0f16"/>
+      <rect x="360" y="115" width="80" height="85" fill="#0a0e14"/>
+      <rect x="455" y="50" width="42" height="150" fill="#0c1018"/>
+      <rect x="510" y="100" width="60" height="100" fill="#0a0e14"/>
+      <rect x="580" y="30" width="36" height="170" fill="#0b0f16"/>
+      <rect x="630" y="90" width="66" height="110" fill="#0a0e14"/>
+      <rect x="710" y="65" width="40" height="135" fill="#0c1018"/>
+      <rect x="760" y="105" width="75" height="95" fill="#0a0e14"/>
+      <rect x="850" y="45" width="34" height="155" fill="#0b0f16"/>
+      <rect x="895" y="95" width="58" height="105" fill="#0a0e14"/>
+      <rect x="965" y="70" width="30" height="130" fill="#0c1018"/>
+      <rect x="1005" y="110" width="80" height="90" fill="#0a0e14"/>
+      <rect x="1100" y="55" width="40" height="145" fill="#0b0f16"/>
+      <rect x="1150" y="100" width="50" height="100" fill="#0a0e14"/>
+    </svg>
+  </div>
+
+  <div class="wrap hero-inner">
+    <div class="eyebrow-line"><span class="dash"></span>Gotham runs on Odoo — someone has to keep the ledgers honest</div>
+    <h1 class="title">NAVEEN<br>ANTONY <span class="last">RAJ</span></h1>
+    <p class="role-line">Backend engineer who has spent <strong>10 years</strong> inside Odoo ERP — shaping manufacturing and sales-order workflows for clients across India, Dubai, and Japan.</p>
+
+    <div class="hero-meta">
+      <div><strong>10 yrs</strong>Odoo / ERP</div>
+      <div><strong>13</strong>Odoo versions shipped (v8–v13)</div>
+      <div><strong>Chennai</strong>Tamil Nadu, India</div>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#contact">Signal me</a>
+      <a class="btn btn-ghost" href="#experience">See the case files</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head"><span class="section-num">01</span><h2>The file on me</h2></div>
+      <div class="about-grid">
+        <div>
+          <p>I build and maintain the backend systems that keep manufacturing floors and sales pipelines moving inside Odoo — mostly Odoo 13, mostly Python. Custom modules, XML-RPC integrations, PostgreSQL administration, and the data pipelines that move information in and out of the system without anyone noticing the plumbing.</p>
+          <p>A large share of my recent work sits inside a Japanese business context — JST time handling, Japanese-language workcenter and field names, and manufacturing logic tuned to how a Japanese client actually runs a shop floor. It's precision work: the kind where a wrong timezone or a mistranslated field breaks a production order at 2am.</p>
+          <p>Currently based in Chennai, working with iFenSys Software Solutions.</p>
+        </div>
+        <div class="file-card">
+          <span class="tag">// case_file.log</span>
+          <dl>
+            <dt>Focus</dt><dd>MRP &amp; sales order workflows, Odoo 13</dd>
+            <dt>Core stack</dt><dd>Python, PostgreSQL, XML-RPC</dd>
+            <dt>Context</dt><dd>Japanese manufacturing clients (JST)</dd>
+            <dt>Also handles</dt><dd>DB administration, import/export pipelines</dd>
+            <dt>Based in</dt><dd>Chennai, Tamil Nadu, India</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head"><span class="section-num">02</span><h2>Utility belt</h2></div>
+      <div class="belt">
+        <div class="belt-item"><span class="cat">Language</span><span class="name">Python</span></div>
+        <div class="belt-item"><span class="cat">Platform</span><span class="name">Odoo (v8–v13)</span></div>
+        <div class="belt-item"><span class="cat">Framework</span><span class="name">Django</span></div>
+        <div class="belt-item"><span class="cat">Integration</span><span class="name">XML-RPC</span></div>
+        <div class="belt-item"><span class="cat">Database</span><span class="name">PostgreSQL</span></div>
+        <div class="belt-item"><span class="cat">Database</span><span class="name">MySQL</span></div>
+        <div class="belt-item"><span class="cat">Reporting</span><span class="name">Qweb</span></div>
+        <div class="belt-item"><span class="cat">Web</span><span class="name">JavaScript</span></div>
+        <div class="belt-item"><span class="cat">Web</span><span class="name">HTML5 / CSS3</span></div>
+        <div class="belt-item"><span class="cat">Ops</span><span class="name">DB Administration</span></div>
+        <div class="belt-item"><span class="cat">Ops</span><span class="name">Data Import/Export</span></div>
+        <div class="belt-item"><span class="cat">Versioning</span><span class="name">Git / SVN / CVS</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head"><span class="section-num">03</span><h2>Case history</h2></div>
+      <div class="timeline">
+        <div class="tl-item">
+          <p class="tl-role">Software Engineer</p>
+          <p class="tl-org">iFenSys Software Solutions Pvt. Ltd. — Chennai</p>
+          <p class="tl-date">May 2019 — Present</p>
+          <p>Leading backend development on Odoo 13: manufacturing and sales-order modules, XML-RPC integrations, and production database administration. Delivering for clients including Fipola Retail, Arigis, and Mitsubishi Heavy Industries (MHI) — the latter built around Japanese-language field naming and JST-aware scheduling.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-role">Software Engineer</p>
+          <p class="tl-org">Bosco Soft Technologies Pvt. Ltd.</p>
+          <p class="tl-date">June 2015 — April 2019</p>
+          <p>Built and supported ERP, CRM, and fleet-management applications across Odoo 8–10. Prepared SRS and design-specification documents, ran change-request and impact analysis, and worked client-facing projects from CristO (multi-diocese data platform) to BoscoCRM and BPMS.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head"><span class="section-num">04</span><h2>Open case files</h2></div>
+      <div class="cases">
+        <div class="case featured">
+          <span class="num">MHI</span>
+          <h3>Mitsubishi Heavy Industries</h3>
+          <span class="stack">ODOO 13 · MANUFACTURING</span>
+          <p>Managing machines and new-product setup for manufacturing, with nesting-process logic and integration across multiple applications. Live since March 2020.</p>
+        </div>
+        <div class="case">
+          <span class="num">01</span>
+          <h3>Arigis</h3>
+          <span class="stack">ODOO 13</span>
+          <p>Multi-factory, multi-shop operation with per-partner pricing, custom routings, and cross-application integration.</p>
+        </div>
+        <div class="case">
+          <span class="num">02</span>
+          <h3>Fipola Retail</h3>
+          <span class="stack">ODOO 12</span>
+          <p>Coupon-based discounting, custom routings, inter-shop inventory transfers, and live stock sync to an e-commerce storefront.</p>
+        </div>
+        <div class="case">
+          <span class="num">03</span>
+          <h3>MCR — Mcrennett Foods</h3>
+          <span class="stack">ODOO 11</span>
+          <p>Multi-factory, multi-shop price-list management with route-based orders and a per-shop POS product catalog.</p>
+        </div>
+        <div class="case">
+          <span class="num">04</span>
+          <h3>Higrade+</h3>
+          <span class="stack">ODOO 11/12 · TEAM LEAD</span>
+          <p>Campus management platform for Don Bosco College — automated core HEI processes end to end, leading a team of 10.</p>
+        </div>
+        <div class="case">
+          <span class="num">05</span>
+          <h3>CristO</h3>
+          <span class="stack">ODOO 10</span>
+          <p>Integrated data-management platform for diocese and parish operations across India and Dubai, with online communication tools.</p>
+        </div>
+        <div class="case">
+          <span class="num">06</span>
+          <h3>FM-SUN</h3>
+          <span class="stack">ODOO 9</span>
+          <p>Fleet management for Sun Network Ltd — vehicle and trip maintenance, driver management, odometer and fuel logs, telematics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-panel">
+        <div class="signal-bg"></div>
+        <h2>Light the signal</h2>
+        <p>Available for Odoo, Python backend, and ERP integration work.</p>
+        <div class="contact-links">
+          <a href="mailto:naveenantonyraj1232@gmail.com">naveenantonyraj1232@gmail.com</a>
+          <a href="tel:+918122591232">+91 81225 91232</a>
+          <span style="color:var(--muted-dim)">Chennai, Tamil Nadu, India</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Naveen Antony Raj S — Odoo ERP Engineer
+</footer>
+
+</body>
+</html>
