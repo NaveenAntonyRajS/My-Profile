@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naveen Antony Raj S — ERP Systems Lead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEAE1;
+    --paper-raised:#F5F3EC;
+    --ink:#1C2431;
+    --ink-soft:#4A5568;
+    --ink-faint:#7C8496;
+    --brass:#A96F2E;
+    --brass-soft:#DDBD8C;
+    --teal:#3E6E63;
+    --line:#CBC5B4;
+    --line-strong:#B4AC97;
+    --sans: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    --mono: 'IBM Plex Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
+    --radius: 3px;
+  }
+  :root:not([data-theme="light"]){
+    @media (prefers-color-scheme: dark){
+      --paper:#12161D;
+      --paper-raised:#181D27;
+      --ink:#EAE7DD;
+      --ink-soft:#AEB4C2;
+      --ink-faint:#727A8C;
+      --brass:#D9A05C;
+      --brass-soft:#7A5A2E;
+      --teal:#6FA394;
+      --line:#2B3140;
+      --line-strong:#3A4154;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#12161D;
+    --paper-raised:#181D27;
+    --ink:#EAE7DD;
+    --ink-soft:#AEB4C2;
+    --ink-faint:#727A8C;
+    --brass:#D9A05C;
+    --brass-soft:#7A5A2E;
+    --teal:#6FA394;
+    --line:#2B3140;
+    --line-strong:#3A4154;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  img{max-width:100%;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  a{color:inherit;}
+
+  /* ---------- Nav ---------- */
+  header.site{
+    position:sticky; top:0; z-index:20;
+    background:color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .navrow{display:flex; align-items:center; justify-content:space-between; height:64px;}
+  .brandmark{display:flex; align-items:center; gap:10px; font-family:var(--mono); font-size:13px; letter-spacing:.02em;}
+  .brandmark .dot{width:8px;height:8px;border-radius:50%;background:var(--brass);}
+  nav.links{display:flex; gap:28px; font-size:14px;}
+  nav.links a{text-decoration:none; color:var(--ink-soft); border-bottom:1px solid transparent; padding-bottom:2px; transition:color .15s, border-color .15s;}
+  nav.links a:hover{color:var(--ink); border-color:var(--brass);}
+  @media (max-width:640px){ nav.links{display:none;} }
+
+  /* ---------- Hero ---------- */
+  .hero{padding:88px 0 64px; border-bottom:1px solid var(--line);}
+  .hero-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:center;}
+  @media (max-width:860px){ .hero-grid{grid-template-columns:1fr; gap:40px;} }
+
+  .eyebrow-line{display:flex; align-items:center; gap:10px; color:var(--brass); font-family:var(--mono); font-size:13px; margin-bottom:22px;}
+  .eyebrow-line::before{content:""; width:26px; height:1px; background:var(--brass);}
+
+  h1.name{
+    font-size:clamp(40px, 6vw, 64px);
+    line-height:1.02;
+    margin:0 0 18px;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .role{font-size:19px; color:var(--ink-soft); margin:0 0 26px; max-width:46ch;}
+  .role b{color:var(--ink); font-weight:600;}
+
+  .hero-stats{display:flex; gap:34px; margin-top:34px; flex-wrap:wrap;}
+  .stat .num{font-family:var(--mono); font-size:26px; color:var(--brass); font-weight:500;}
+  .stat .label{font-size:12.5px; color:var(--ink-faint); margin-top:2px;}
+
+  .hero-actions{display:flex; gap:14px; margin-top:36px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 20px; border-radius:var(--radius);
+    font-size:14px; text-decoration:none; font-weight:500;
+    border:1px solid var(--line-strong);
+  }
+  .btn.primary{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .btn.ghost{color:var(--ink); background:transparent;}
+  .btn.primary:hover{background:var(--brass); border-color:var(--brass);}
+  .btn.ghost:hover{border-color:var(--brass); color:var(--brass);}
+
+  /* ---------- Diagram ---------- */
+  .diagram-frame{
+    border:1px solid var(--line);
+    background:var(--paper-raised);
+    border-radius:4px;
+    padding:18px;
+  }
+  .diagram-frame svg{display:block; width:100%; height:auto;}
+  .diagram-caption{font-family:var(--mono); font-size:11.5px; color:var(--ink-faint); margin-top:10px; text-align:center;}
+
+  /* ---------- Section shell ---------- */
+  section{padding:72px 0; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .section-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:40px; gap:20px; flex-wrap:wrap;}
+  .section-head h2{font-size:28px; margin:0; font-weight:600; letter-spacing:-0.01em;}
+  .section-tag{font-family:var(--mono); font-size:12.5px; color:var(--ink-faint);}
+
+  /* ---------- Summary ---------- */
+  .summary-text{font-size:17px; color:var(--ink-soft); max-width:74ch; margin:0 0 8px;}
+  .summary-text + .summary-text{margin-top:14px;}
+
+  /* ---------- Skills ---------- */
+  .skill-groups{display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .skill-group{background:var(--paper); padding:22px;}
+  .skill-group h3{margin:0 0 14px; font-size:13px; font-family:var(--mono); color:var(--teal); font-weight:500;}
+  .chip-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:var(--mono); font-size:12.5px;
+    border:1px solid var(--line-strong); border-radius:2px;
+    padding:5px 9px; color:var(--ink-soft);
+  }
+  @media (max-width:760px){ .skill-groups{grid-template-columns:1fr;} }
+
+  /* ---------- Timeline ---------- */
+  .timeline{position:relative; margin-top:8px;}
+  .tl-item{
+    display:grid; grid-template-columns:150px 1fr; gap:28px;
+    padding:28px 0; border-top:1px solid var(--line);
+  }
+  .tl-item:first-child{border-top:none;}
+  .tl-date{font-family:var(--mono); font-size:13px; color:var(--brass); padding-top:2px;}
+  .tl-role{font-size:19px; font-weight:600; margin:0 0 4px;}
+  .tl-org{font-size:14px; color:var(--ink-faint); margin:0 0 14px;}
+  .tl-desc{color:var(--ink-soft); font-size:15px; max-width:62ch; margin:0 0 14px;}
+  .tl-desc ul{margin:0; padding-left:18px;}
+  .tl-desc li{margin-bottom:6px;}
+  @media (max-width:640px){ .tl-item{grid-template-columns:1fr; gap:8px;} }
+
+  /* ---------- Projects ---------- */
+  .project-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  @media (max-width:860px){ .project-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .project-grid{grid-template-columns:1fr;} }
+  .proj-card{background:var(--paper); padding:22px; display:flex; flex-direction:column; min-height:190px;}
+  .proj-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;}
+  .proj-name{font-size:16px; font-weight:600; margin:0;}
+  .proj-tech{font-family:var(--mono); font-size:11px; color:var(--teal); border:1px solid var(--teal); border-radius:2px; padding:2px 6px; white-space:nowrap;}
+  .proj-desc{font-size:13.5px; color:var(--ink-soft); flex-grow:1; margin:0 0 12px;}
+  .proj-meta{font-family:var(--mono); font-size:11px; color:var(--ink-faint); display:flex; justify-content:space-between; border-top:1px solid var(--line); padding-top:10px;}
+  .proj-card.lead{background:var(--paper-raised);}
+  .lead-badge{font-family:var(--mono); font-size:10.5px; color:var(--brass); border:1px solid var(--brass); border-radius:2px; padding:2px 6px;}
+
+  /* ---------- Education ---------- */
+  .edu-list{display:flex; flex-direction:column; gap:0;}
+  .edu-item{display:flex; justify-content:space-between; gap:20px; padding:18px 0; border-top:1px solid var(--line); align-items:baseline;}
+  .edu-item:first-child{border-top:none;}
+  .edu-deg{font-size:16px; font-weight:600;}
+  .edu-school{font-size:13.5px; color:var(--ink-faint); margin-top:2px;}
+  .edu-right{font-family:var(--mono); font-size:12.5px; color:var(--ink-faint); text-align:right; white-space:nowrap;}
+
+  /* ---------- Contact ---------- */
+  .contact-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:56px;}
+  @media (max-width:760px){ .contact-grid{grid-template-columns:1fr;} }
+  .contact-row{display:flex; justify-content:space-between; padding:16px 0; border-top:1px solid var(--line); font-size:15px;}
+  .contact-row:first-child{border-top:none;}
+  .contact-label{color:var(--ink-faint); font-family:var(--mono); font-size:12.5px;}
+  .contact-value{color:var(--ink); font-weight:500;}
+  .contact-value a{text-decoration:none; border-bottom:1px solid var(--line-strong);}
+  .contact-value a:hover{border-color:var(--brass); color:var(--brass);}
+
+  footer{padding:32px 0 48px; text-align:center; color:var(--ink-faint); font-family:var(--mono); font-size:12px;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap navrow">
+    <div class="brandmark"><span class="dot"></span> N. ANTONY RAJ / ERP LEAD</div>
+    <nav class="links">
+      <a href="#summary">Summary</a>
+      <a href="#stack">Stack</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero wrap" style="border-bottom:none;">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow-line">Chennai, India</div>
+      <h1 class="name">Naveen Antony Raj S</h1>
+      <p class="role">A <b>project lead</b> who builds and ships Odoo ERP systems — from requirements gathering through to a team delivering working software. Eleven years turning operational chaos across dioceses, factories, and retail chains into systems people actually run their business on.</p>
+
+      <div class="hero-stats">
+        <div class="stat"><div class="num">11+</div><div class="label">years in ERP &amp; web development</div></div>
+        <div class="stat"><div class="num">9</div><div class="label">production Odoo deployments</div></div>
+        <div class="stat"><div class="num">10</div><div class="label">engineers on largest team led</div></div>
+        <div class="stat"><div class="num">v8–13</div><div class="label">Odoo versions shipped</div></div>
+      </div>
+
+      <div class="hero-actions">
+        <a class="btn primary" href="#contact">Get in touch</a>
+        <a class="btn ghost" href="#projects">See the work</a>
+      </div>
+    </div>
+
+    <div class="diagram-frame">
+      <svg viewBox="0 0 420 360" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="var(--line-strong)" stroke-width="1">
+          <line x1="210" y1="180" x2="70" y2="55"/>
+          <line x1="210" y1="180" x2="210" y2="40"/>
+          <line x1="210" y1="180" x2="350" y2="55"/>
+          <line x1="210" y1="180" x2="55" y2="200"/>
+          <line x1="210" y1="180" x2="365" y2="200"/>
+          <line x1="210" y1="180" x2="90" y2="320"/>
+          <line x1="210" y1="180" x2="210" y2="335"/>
+          <line x1="210" y1="180" x2="330" y2="320"/>
+        </g>
+        <circle cx="210" cy="180" r="34" fill="var(--brass)" opacity="0.16"/>
+        <circle cx="210" cy="180" r="22" fill="var(--paper)" stroke="var(--brass)" stroke-width="1.5"/>
+        <text x="210" y="184" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="var(--brass)">LEAD</text>
+
+        <g font-family="var(--mono)" font-size="10.5" fill="var(--ink-soft)">
+          <g>
+            <circle cx="70" cy="55" r="24" fill="var(--paper)" stroke="var(--line-strong)"/>
+            <text x="70" y="58" text-anchor="middle">Sales</text>
+          </g>
+          <g>
+            <circle cx="210" cy="40" r="24" fill="var(--paper)" stroke="var(--line-strong)"/>
+            <text x="210" y="43" text-anchor="middle">CRM</text>
+          </g>
+          <g>
+            <circle cx="350" cy="55" r="24" fill="var(--paper)" stroke="var(--line-strong)"/>
+            <text x="350" y="58" text-anchor="middle">HR</text>
+          </g>
+          <g>
+            <circle cx="55" cy="200" r="24" fill="var(--paper)" stroke="var(--line-strong)"/>
+            <text x="55" y="203" text-anchor="middle">Stock</text>
+          </g>
+          <g>
+            <circle cx="365" cy="200" r="24" fill="var(--paper)" stroke="var(--line-strong)"/>
+            <text x="365" y="203" text-anchor="middle">MRP</text>
+          </g>
+          <g>
+            <circle cx="90" cy="320" r="24" fill="var(--paper)" stroke="var(--line-strong)"/>
+            <text x="90" y="323" text-anchor="middle">Finance</text>
+          </g>
+          <g>
+            <circle cx="210" cy="335" r="24" fill="var(--paper)" stroke="var(--line-strong)"/>
+            <text x="210" y="338" text-anchor="middle">Qweb</text>
+          </g>
+          <g>
+            <circle cx="330" cy="320" r="24" fill="var(--paper)" stroke="var(--line-strong)"/>
+            <text x="330" y="323" text-anchor="middle">POS</text>
+          </g>
+        </g>
+      </svg>
+      <div class="diagram-caption">how one Odoo instance holds a business together</div>
+    </div>
+  </div>
+</section>
+
+<section id="summary" class="wrap">
+  <div class="section-head">
+    <h2>Summary</h2>
+    <div class="section-tag">01 / profile</div>
+  </div>
+  <p class="summary-text">Naveen has spent his career inside Odoo — building the modules that let a diocese manage its parishes, a manufacturer track its factory floor, or a retailer sync inventory across shops and an e-commerce site. He works across the stack: Python and Django on the server, PostgreSQL and MySQL underneath, Qweb for the reports finance teams live in, and enough JavaScript and HTML to own the front end too.</p>
+  <p class="summary-text">What sets him apart is the leadership layer on top of that: on Higrade+, a campus management system for Don Bosco College, he ran a ten-person team through two major Odoo versions. On most other projects he's the engineer clients and colleagues turn to when requirements are unclear and the system has to be designed from scratch.</p>
+</section>
+
+<section id="stack" class="wrap">
+  <div class="section-head">
+    <h2>Technical stack</h2>
+    <div class="section-tag">02 / capabilities</div>
+  </div>
+  <div class="skill-groups">
+    <div class="skill-group">
+      <h3>CORE</h3>
+      <div class="chip-row">
+        <span class="chip">Python</span>
+        <span class="chip">Odoo / OpenERP</span>
+        <span class="chip">Django</span>
+        <span class="chip">Qweb Reports</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>FRONT END &amp; INTEGRATION</h3>
+      <div class="chip-row">
+        <span class="chip">JavaScript</span>
+        <span class="chip">HTML5</span>
+        <span class="chip">CSS3</span>
+        <span class="chip">XML</span>
+        <span class="chip">Web Services</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>DATA &amp; TOOLING</h3>
+      <div class="chip-row">
+        <span class="chip">PostgreSQL</span>
+        <span class="chip">MySQL</span>
+        <span class="chip">Git</span>
+        <span class="chip">SVN</span>
+        <span class="chip">Ubuntu</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="wrap">
+  <div class="section-head">
+    <h2>Experience</h2>
+    <div class="section-tag">03 / timeline</div>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">May 2019 — Present</div>
+      <div>
+        <p class="tl-role">Software Engineer → Team Lead</p>
+        <p class="tl-org">iFenSys Software Solutions Pvt. Ltd, Chennai</p>
+        <div class="tl-desc">
+          <ul>
+            <li>Delivered and maintained Odoo ERP systems for clients across retail, manufacturing, and heavy industry, spanning Odoo v11 through v13.</li>
+            <li>Led the ten-person team building Higrade+, a campus management system for Don Bosco College, across an Odoo 11 to 12 migration.</li>
+            <li>Built multi-shop inventory and e-commerce sync for Fipola Retail, and manufacturing/nesting workflows for Mitsubishi Heavy Industries.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Jun 2015 — Apr 2019</div>
+      <div>
+        <p class="tl-role">Software Engineer</p>
+        <p class="tl-org">Bosco Soft Technologies Pvt. Ltd, Chennai</p>
+        <div class="tl-desc">
+          <ul>
+            <li>Wrote SRS, use case, and design specification documents, and ran change-request and impact-analysis reviews in Visual Studio.</li>
+            <li>Applied the RUP process across analysis, design, and development on ERP and education-management products.</li>
+            <li>Built CristO, an Odoo 10 platform used by dioceses across India and Dubai, and Bosco Soft's internal CRM and project-management tools.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="wrap">
+  <div class="section-head">
+    <h2>Selected projects</h2>
+    <div class="section-tag">04 / delivered</div>
+  </div>
+  <div class="project-grid">
+    <div class="proj-card lead">
+      <div class="proj-top"><p class="proj-name">Higrade+</p><span class="proj-tech">Odoo 11/12</span></div>
+      <p class="proj-desc">Campus management system automating core processes across an entire higher-education institution.</p>
+      <div class="proj-meta"><span>Don Bosco College</span><span class="lead-badge">TEAM LEAD · 10</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top"><p class="proj-name">CristO</p><span class="proj-tech">Odoo 10</span></div>
+      <p class="proj-desc">Integrated data management for dioceses and parishes, with online communication and social features.</p>
+      <div class="proj-meta"><span>Dioceses, India &amp; Dubai</span><span>Team of 7</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top"><p class="proj-name">MHI</p><span class="proj-tech">Odoo 13</span></div>
+      <p class="proj-desc">Machine and manufacturing management with nesting processes, integrated with other plant systems.</p>
+      <div class="proj-meta"><span>Mitsubishi Heavy Industries</span><span>Ongoing</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top"><p class="proj-name">Arigis</p><span class="proj-tech">Odoo 13</span></div>
+      <p class="proj-desc">Multi-factory, multi-partner pricing and routing across products, integrated with several applications.</p>
+      <div class="proj-meta"><span>Arigis</span><span>Ongoing</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top"><p class="proj-name">Fipola</p><span class="proj-tech">Odoo 12</span></div>
+      <p class="proj-desc">Coupon-based discounting, multi-shop inventory transfer, and live stock sync to an e-commerce site.</p>
+      <div class="proj-meta"><span>Fipola Retail India</span><span>Ongoing</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top"><p class="proj-name">MCR</p><span class="proj-tech">Odoo 11</span></div>
+      <p class="proj-desc">Multi-factory pricing and order routing across shops, partners, and POS product categories.</p>
+      <div class="proj-meta"><span>Mcrennett Foods</span><span>May 2019 – Dec 2020</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top"><p class="proj-name">FM-SUN</p><span class="proj-tech">Odoo 9</span></div>
+      <p class="proj-desc">Fleet management for vehicle and trip maintenance, driver management, and telematics tracking.</p>
+      <div class="proj-meta"><span>Sun Network Ltd</span><span>Team of 5</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top"><p class="proj-name">HRPM</p><span class="proj-tech">Odoo 8</span></div>
+      <p class="proj-desc">Human resource and payroll management built for an energy and construction sector client.</p>
+      <div class="proj-meta"><span>KDDB, Dubai</span><span>Oct 2015 – Jan 2016</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top"><p class="proj-name">BoscoCRM &amp; BPMS</p><span class="proj-tech">Odoo 9/10</span></div>
+      <p class="proj-desc">Internal customer relationship and project-scheduling tools built for Bosco Soft's own teams.</p>
+      <div class="proj-meta"><span>Bosco ITS</span><span>Jun – Aug 2015</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="education" class="wrap">
+  <div class="section-head">
+    <h2>Education</h2>
+    <div class="section-tag">05 / academics</div>
+  </div>
+  <div class="edu-list">
+    <div class="edu-item">
+      <div>
+        <div class="edu-deg">Master of Computer Applications (MCA)</div>
+        <div class="edu-school">Annamalai University, DDE</div>
+      </div>
+      <div class="edu-right">Distance Education</div>
+    </div>
+    <div class="edu-item">
+      <div>
+        <div class="edu-deg">Bachelor of Computer Applications (BCA)</div>
+        <div class="edu-school">Don Bosco College, Yelagiri Hills, Tamil Nadu</div>
+      </div>
+      <div class="edu-right">Undergraduate</div>
+    </div>
+    <div class="edu-item">
+      <div>
+        <div class="edu-deg">PGDIT</div>
+        <div class="edu-school">Bosco Institute of Information Technology, Yelagiri Hills</div>
+      </div>
+      <div class="edu-right">2015</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="wrap" style="border-bottom:none;">
+  <div class="section-head">
+    <h2>Contact</h2>
+    <div class="section-tag">06 / reach out</div>
+  </div>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-row">
+        <span class="contact-label">EMAIL</span>
+        <span class="contact-value"><a href="mailto:naveenantonyraj1232@gmail.com">naveenantonyraj1232@gmail.com</a></span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">PHONE</span>
+        <span class="contact-value"><a href="tel:+918122591232">+91 81225 91232</a></span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">LOCATION</span>
+        <span class="contact-value">Perungudi, Chennai, Tamil Nadu 600096</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">CURRENT ROLE</span>
+        <span class="contact-value">iFenSys Software Solutions Pvt. Ltd</span>
+      </div>
+    </div>
+    <div>
+      <p class="summary-text" style="font-size:15px;">Open to conversations about project leadership, Odoo implementations, and ERP systems built to actually match how a business runs — not the other way around.</p>
+      <a class="btn primary" href="mailto:naveenantonyraj1232@gmail.com" style="margin-top:10px;">Write to Naveen</a>
+    </div>
+  </div>
+</section>
+
+<footer>NAVEEN ANTONY RAJ S — CHENNAI, INDIA</footer>
+
+</body>
+</html>
